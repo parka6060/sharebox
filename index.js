@@ -30,7 +30,10 @@ const upload = multer({
 });
 
 // Routes
-app.get('/favicon.ico', (req, res) => res.sendFile(path.join(__dirname, 'public', 'favicon.ico')));
+app.get('/favicon.ico', (req, res) => {
+  res.setHeader('Content-Type', 'image/x-icon');
+  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+});
 app.get('/:filename', serveFile);
 app.get('/health', healthCheck);
 app.get('/api/public-stats', getPublicStats);

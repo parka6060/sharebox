@@ -1,0 +1,15 @@
+node_modules/
+.env
+
+# ShareBox uploads (flat data folder)
+data/*
+!data/.gitkeep
+
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+deploy.sh
+DEPLOY.md
+package-deploy.bat

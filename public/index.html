@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset=utf-8><title>ShareBox</title><style>*{
+    margin:0
+}
+body{
+    font-family:serif;
+    max-width:600px;
+    margin:60px auto;
+    padding:0 20px
+}
+@media(prefers-color-scheme:dark){
+    body{
+        background:#000;
+        color:#fff
+    }
+    div{
+        border-color:#fff
+    }
+    a{
+        color:#88c999
+    }
+}
+pre{
+    font-size:clamp(.3em,1.5vw,.6em);
+    overflow-x:auto;
+    overflow-y:hidden;
+    margin-bottom:1em;
+    line-height:1
+}
+@media(max-width:768px){
+    body{
+        max-width:100%;
+        padding:0 15px
+    }
+    pre{
+        font-size:clamp(.25em,1.8vw,.45em)
+    }
+}
+@media(min-width:1400px){
+    pre{
+        font-size:clamp(.5em,2vw,.7em)
+    }
+}
+div{
+    margin:40px 0;
+    border:1px solid;
+    padding:25px
+}
+</style><pre>         █████                                   █████                         
+        ▒▒███                                   ▒▒███                          
+  █████  ▒███████    ██████   ████████   ██████  ▒███████   ██████  █████ █████
+ ███▒▒   ▒███▒▒███  ▒▒▒▒▒███ ▒▒███▒▒███ ███▒▒███ ▒███▒▒███ ███▒▒███▒▒███ ▒▒███ 
+▒▒█████  ▒███ ▒███   ███████  ▒███ ▒▒▒ ▒███████  ▒███ ▒███▒███ ▒███ ▒▒▒█████▒  
+ ▒▒▒▒███ ▒███ ▒███  ███▒▒███  ▒███     ▒███▒▒▒   ▒███ ▒███▒███ ▒███  ███▒▒▒███ 
+ ██████  ████ █████▒▒████████ █████    ▒▒██████  ████████ ▒▒██████  █████ █████
+▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒  ▒▒▒▒▒ ▒▒▒▒▒</pre>
+<p>For stupidly simple ShareX uploads. An <a href=https://eninabox.art/>eninabox.art</a> project.</p>
+<p>Open source on <a href=https://github.com/parka6060/sharebox>GitHub</a>.</p>
+    
+<div>Files: <span id=f>Loading...</span><br>Storage: <span id=s>Loading...</span></div><script>fetch('/api/public-stats').then(r=>r.json()).then(d=>{
+    f.textContent=d.totalFiles.toLocaleString();
+    s.textContent=d.totalSizeMB+' MB'
+}
+).catch(()=>f.textContent=s.textContent='Error')</script>

@@ -1,4 +1,5 @@
-         █████                                   █████                         
+```text
+█████                                   █████                         
         ▒▒███                                   ▒▒███                          
   █████  ▒███████    ██████   ████████   ██████  ▒███████   ██████  █████ █████
  ███▒▒   ▒███▒▒███  ▒▒▒▒▒███ ▒▒███▒▒███ ███▒▒███ ▒███▒▒███ ███▒▒███▒▒███ ▒▒███ 
@@ -6,6 +7,7 @@
  ▒▒▒▒███ ▒███ ▒███  ███▒▒███  ▒███     ▒███▒▒▒   ▒███ ▒███▒███ ▒███  ███▒▒▒███ 
  ██████  ████ █████▒▒████████ █████    ▒▒██████  ████████ ▒▒██████  █████ █████
 ▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒  ▒▒▒▒▒ ▒▒▒▒▒
+```
 
 A stupidly simple, basic, image/video upload server for ShareX with automatic compression. Made with the intention to be self-hosted, tested on a very small scale. No database, just raw files accessed in a simple way.
 

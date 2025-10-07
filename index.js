@@ -74,15 +74,14 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         console.error('Image processing failed:', error);
       }
     } else if (mimetype.startsWith('video/')) {
+      const tempInput = path.join(config.UPLOADS_DIR, `temp_${fileId}${fileExtension}`);
+      const compressedPath = path.join(config.UPLOADS_DIR, `${fileId}.mp4`);
+      
       try {
-        const tempInput = path.join(config.UPLOADS_DIR, `temp_${fileId}${fileExtension}`);
-        const compressedPath = path.join(config.UPLOADS_DIR, `${fileId}.mp4`);
-        
         await fs.writeFile(tempInput, buffer);
         await compressVideo(tempInput, compressedPath);
         
         finalBuffer = await fs.readFile(compressedPath);
-        await fs.unlink(tempInput);
         fileExtension = '.mp4';
         
         const fileUrl = `${config.BASE_URL}/${fileId}${fileExtension}`;
@@ -94,7 +93,31 @@ app.post('/upload', upload.single('file'), async (req, res) => {
           id: fileId
         });
       } catch (error) {
-        console.error('Video processing failed:', error);
+        const processingTime = Date.now() - startTime;
+        console.error(`Video processing failed (${processingTime}ms):`, error.message);
+        
+        return res.status(500).json({
+          error: 'Video compression failed',
+          message: error.message,
+          processingTime: `${processingTime}ms`
+        });
+      } finally {
+        // always clean up temp files, even if compression or read fails
+        try {
+          await fs.unlink(tempInput);
+        } catch (cleanupError) {
+          // ignore cleanup errors
+        }
+        
+        // Clean up compressed file if compression succeeded but read/response failed
+        try {
+          const compressedExists = await fs.access(compressedPath).then(() => true).catch(() => false);
+          if (compressedExists) {
+            await fs.unlink(compressedPath);
+          }
+        } catch (cleanupError) {
+          // Ignore cleanup errors
+        }
       }
     }
     

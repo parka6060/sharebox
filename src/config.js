@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const config = {
   // Server settings
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 3333,
   BASE_URL: process.env.BASE_URL,
   
   // Authentication

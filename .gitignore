@@ -13,3 +13,6 @@ Dockerfile
 deploy.sh
 DEPLOY.md
 package-deploy.bat
+sharebox-quick.tar.gz
+sharebox-update.tar.gz
+deploy-quick.ps1

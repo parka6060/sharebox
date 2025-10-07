@@ -9,7 +9,11 @@
 ▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒  ▒▒▒▒▒ ▒▒▒▒▒
 ```
 
-A stupidly simple, basic, image/video upload server for ShareX with automatic compression. Made with the intention to be self-hosted, tested on a very small scale. No database, just raw files accessed in a simple way.
+A stupidly simple, basic, image/video upload server for ShareX with automatic compression. No database, just raw files accessed in a simple way.
+This project was made for myself because I was tired of using services like https://sxcu.net/ and wanted a simple self-hosted alternative.
+
+# How it works
+The server accepts file uploads via ShareX or any HTTP client, it requires a valid `UPLOAD_TOKEN` for authentication. All accepted static images are compressed to WebP using `sharp`, videos are compressed to MP4 using  `ffmpeg-static`. There is no complicated databases, files are stored directly in the `data/` directory. File names are generated on the fly and are formated as YYYYMMDD-(file size in KB)K-(16 bytes as random hex value). That's about all you need to know! It's designed to be used as a personal image server and should run fine as long as there's disks space and a decent network speed. Heavy video compression is single threaded per upload and could potentially couse bottlenecking on low-powered systems. Lastly, no database is a feature :)
 
 
 # Features
